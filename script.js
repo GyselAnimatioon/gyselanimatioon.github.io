@@ -33,10 +33,10 @@ pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
 
             // Anpassen des Layouts basierend auf dem Modus
             if (isMobile) {
-                canvas.style.width = "200%";
+                canvas.style.width = "100%";
             } else {
                 // Anpassen für Desktop-Ansicht
-                canvas.style.maxWidth = "500%";
+                canvas.style.maxWidth = "100%";
             }
 
             // Rendern der Seite

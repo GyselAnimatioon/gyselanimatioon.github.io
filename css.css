@@ -10,11 +10,21 @@
     justify-content: center;
 }
 
+.page {
+	margin: 50px 0 0 0;
+}
+
 .title {
 	margin: 0;
-	padding: 10px;
 	background-color: gray;
 	text-align: center;
+	        position: fixed; /* Fixierte Positionierung */
+            top: 0; /* Oben am Bildschirm */
+            left: 0; /* Links am Bildschirm */
+            width: 100%; /* Vollständige Breite */
+            z-index: 1000; /* Stellt sicher, dass der Titel über anderen Elementen steht */
+            padding: 10px 0; /* Ein wenig Abstand oben und unten für das Aussehen */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Fügt 
 }
 
 div {

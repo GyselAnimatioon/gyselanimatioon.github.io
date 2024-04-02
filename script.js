@@ -1,7 +1,7 @@
 const container = document.getElementById('pdf-container');
 
 // Bestimmen des Render-Modus basierend auf der Bildschirmbreite
-const isMobile = window.innerWidth < 600;
+const isMobile = window.innerWidth < 1000;
 
 pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
     for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
@@ -21,7 +21,7 @@ pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
                 canvas.style.width = "200%";
             } else {
                 // Anpassen für Desktop-Ansicht
-                canvas.style.maxWidth = "25%";
+                canvas.style.maxWidth = "100%";
             }
 
             // Rendern der Seite

@@ -36,7 +36,7 @@ pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
                 canvas.style.width = "200%";
             } else {
                 // Anpassen für Desktop-Ansicht
-                canvas.style.maxWidth = "100%";
+                canvas.style.maxWidth = "500%";
             }
 
             // Rendern der Seite

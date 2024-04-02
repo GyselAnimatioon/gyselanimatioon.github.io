@@ -3,7 +3,7 @@ const container = document.getElementById('pdf-container');
 // Bestimmen des Render-Modus basierend auf der Bildschirmbreite
 const isMobile = window.innerWidth < 600;
 
-pdfjsLib.getDocument('beispiel_magazin.pdf').promise.then(pdf => {
+pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
     for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         // Erstellen eines neuen Canvas für jede Seite
         let canvas = document.createElement('canvas');
@@ -18,10 +18,10 @@ pdfjsLib.getDocument('beispiel_magazin.pdf').promise.then(pdf => {
 
             // Anpassen des Layouts basierend auf dem Modus
             if (isMobile) {
-                canvas.style.width = "100%";
+                canvas.style.width = "200%";
             } else {
                 // Anpassen für Desktop-Ansicht
-                canvas.style.maxWidth = "50%";
+                canvas.style.maxWidth = "25%";
             }
 
             // Rendern der Seite

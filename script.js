@@ -1,18 +1,35 @@
-// Laden der PDF-Datei
+const container = document.getElementById('pdf-container');
+
+// Bestimmen des Render-Modus basierend auf der Bildschirmbreite
+const isMobile = window.innerWidth < 600;
+
 pdfjsLib.getDocument('beispiel_magazin.pdf').promise.then(pdf => {
-    // Erhalten der ersten Seite
-    pdf.getPage(1).then(page => {
-        var canvas = document.getElementById('pdf-renderer');
-        var ctx = canvas.getContext('2d');
-        var viewport = page.getViewport({scale: 1.5});
+    for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        // Erstellen eines neuen Canvas für jede Seite
+        let canvas = document.createElement('canvas');
+        canvas.id = `pdf-renderer-${pageNum}`;
+        container.appendChild(canvas);
 
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
+        // Erhalten der Seite
+        pdf.getPage(pageNum).then(page => {
+            var viewport = page.getViewport({scale: 1});
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
 
-        // Rendern der Seite
-        page.render({
-            canvasContext: ctx,
-            viewport: viewport
+            // Anpassen des Layouts basierend auf dem Modus
+            if (isMobile) {
+                canvas.style.width = "100%";
+            } else {
+                // Anpassen für Desktop-Ansicht
+                canvas.style.maxWidth = "50%";
+            }
+
+            // Rendern der Seite
+            var renderContext = {
+                canvasContext: canvas.getContext('2d'),
+                viewport: viewport
+            };
+            page.render(renderContext);
         });
-    });
+    }
 });

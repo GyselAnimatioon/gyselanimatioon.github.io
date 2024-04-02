@@ -1,7 +1,8 @@
 const container = document.getElementById('pdf-container');
 
 // Bestimmen des Render-Modus basierend auf der Bildschirmbreite
-const isMobile = window.innerWidth < 1800;
+const isMobile = window.innerWidth < window.innerHeight;
+
 
 pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
     for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {

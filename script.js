@@ -1,5 +1,19 @@
 const container = document.getElementById('pdf-container');
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const deviceInfoDiv = document.getElementById('device-info');
+    const browserData = `Browser-Name: ${navigator.appName}<br>
+                         Browser-Version: ${navigator.appVersion}<br>
+                         Plattform: ${navigator.platform}<br>
+                         Sprache: ${navigator.language}<br>
+                         Cookies aktiviert: ${navigator.cookieEnabled}`;
+
+    // Informationen über das Gerät anzeigen
+    deviceInfoDiv.innerHTML = `<p>${browserData}</p>`;
+
+    // PDF-Anzeige Logik...
+});
+
 // Bestimmen des Render-Modus basierend auf der Bildschirmbreite
 const isMobile = window.innerWidth < window.innerHeight;
 

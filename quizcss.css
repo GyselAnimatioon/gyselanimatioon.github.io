@@ -49,6 +49,10 @@ body {
     color: #666;
 }
 
+.audio-player {
+    margin-right: 20px; /* Adds space between the audio player and the link */
+}
+
 .google-link {
     padding: 8px 16px;
     background-color: #007BFF;
@@ -69,6 +73,7 @@ body {
 h1 {
     color: #333;
     text-align: center;
+	margin-bottom: 20px;
 }
 
 

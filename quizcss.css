@@ -22,11 +22,16 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .word {
     display: flex;
     align-items: center;
+    justify-content: center; /* Zentriert die Inhalte horizontal */
+    width: 100%; /* Stellt sicher, dass das Flex-Container die gesamte Breite nutzt */
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
@@ -65,6 +70,7 @@ h1 {
     color: #333;
     text-align: center;
 }
+
 
 
 .nav {

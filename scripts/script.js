@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const isMobile = window.innerWidth < window.innerHeight;
 
 
-pdfjsLib.getDocument('farbPDF.pdf').promise.then(pdf => {
+pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
     for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         // Erstellen eines neuen Canvas für jede Seite
         let canvas = document.createElement('canvas');

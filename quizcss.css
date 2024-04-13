@@ -1,0 +1,79 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.page {
+    background-color: #fff;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.word {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.word img {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.google-link {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.google-link:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixes the navbar to the top of the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Change the color to fit your design */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px 20px; /* Adjust padding as needed */
+    z-index: 1000; /* Ensures the navbar stays on top of other content */
+}
+
+.title {
+    margin: 0; /* Removes default margin */
+}

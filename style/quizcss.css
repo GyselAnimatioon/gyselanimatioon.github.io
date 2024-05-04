@@ -30,30 +30,31 @@ body {
 .word {
     display: flex;
     align-items: center;
-    justify-content: center; /* Zentriert die Inhalte horizontal */
-    width: 100%; /* Stellt sicher, dass das Flex-Container die gesamte Breite nutzt */
+    justify-content: space-around; /* Ändert die Ausrichtung auf gleichmäßige Verteilung */
+    width: 100%; /* Behält die volle Breite bei */
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
+    flex-wrap: wrap; /* Erlaubt Umbrüche, falls nötig */
 }
 
 .word img {
-    width: 50px;
-    height: auto;
+    flex: 0 0 50px; /* Behält die Größe bei, verhindert Wachsen oder Schrumpfen */
     margin-right: 15px;
 }
 
-.word p {
-    margin: 0 20px;
-    font-size: 20px;
-    color: #666;
+.word p, .audio-player, .google-link {
+    flex: 1; /* Erlaubt den Elementen, den verfügbaren Platz gleichmäßig zu füllen */
+    text-align: center; /* Zentriert den Text innerhalb der Spalten */
 }
+
 
 .audio-player {
     margin-right: 20px; /* Adds space between the audio player and the link */
 }
 
 .google-link {
+    white-space: nowrap; /* Verhindert den Umbruch innerhalb des Links */
     padding: 8px 16px;
     background-color: #007BFF;
     border: none;

@@ -5,14 +5,56 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif; /* Moderne Schriftart */
+    background-color: #f4f4f4; /* Leichter Hintergrund für modernes Aussehen */
     margin: 0;
+    padding: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+
+.title a {
+    color: #ffffff; /* Weiße Schriftfarbe für den Titel */
+    text-decoration: none; /* Entfernt Unterstreichungen */
+    font-size: 24px; /* Größere Schrift für den Titel */
+    font-weight: bold; /* Fettgedruckter Text */
+    transition: color 0.3s; /* Animation beim Überfahren mit der Maus */
+}
+
+.title a:hover {
+    color: #FFD700; /* Farbwechsel beim Überfahren mit der Maus */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixes the navbar to the top of the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Change the color to fit your design */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px 20px; /* Adjust padding as needed */
+    z-index: 1000; /* Ensures the navbar stays on top of other content */
+}
+
+.quiz-button {
+    font-size: 18px;
+    color: #ffffff; /* Weiße Schriftfarbe für die Schaltfläche */
+    background-color: #e63946; /* Roter Hintergrund für die Schaltfläche */
+    text-decoration: none;
+    padding: 10px 20px; /* Abstand innen */
+    border-radius: 5px; /* Abgerundete Ecken */
+    transition: background-color 0.3s; /* Animation beim Überfahren mit der Maus */
+}
+
+.quiz-button:hover {
+    background-color: #f1faee; /* Farbwechsel beim Überfahren mit der Maus */
+    color: #005A9C;
 }
 
 .page {
@@ -81,20 +123,3 @@ h1, h2, h3, h4 {
 	padding-bottom: 20px;
 }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; /* Fixes the navbar to the top of the screen */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fff; /* Change the color to fit your design */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 10px 20px; /* Adjust padding as needed */
-    z-index: 1000; /* Ensures the navbar stays on top of other content */
-}
-
-.title {
-    margin: 0; /* Removes default margin */
-}

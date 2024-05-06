@@ -17,7 +17,7 @@ body {
 }
 
 .title a {
-    color: #ffffff; /* Weiße Schriftfarbe für den Titel */
+    color: #000; /* Weiße Schriftfarbe für den Titel */
     text-decoration: none; /* Entfernt Unterstreichungen */
     font-size: 24px; /* Größere Schrift für den Titel */
     font-weight: bold; /* Fettgedruckter Text */

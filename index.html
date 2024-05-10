@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinguaComics</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
-	<link rel="stylesheet" href="style/css.css">
-</head>
-<body>
-	<div class="nav">
-        <h1 class="title">LinguaComics</h1>
-        <a class="quiz-button" href="https://linguacomics.com/site/quiz/">Go to the Quiz</a>
-    </div>
-	<div class="page">
-		<div id="pdf-container" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
-		<!--<div id="device-info"></div>-->
-	</div>
-    <script src="scripts/script.js"></script>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>LinguaComics</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
+      <link rel="stylesheet" href="style/css.css">
+   </head>
+   <body>
+      <nav>
+         <span class="nav-title">LinguaComics</span>
+         <div class="hamburger">&#9776;</div>
+         <ul class="nav-links">
+            <li><a href="https://linguacomics.com/">Magazine</a></li>
+            <li><a href="https://linguacomics.com/site/quiz/">Pronounciation</a></li>
+            <li><a href="https://linguacomics.com/site/tonguetwister/">Tongue Twisters</a></li>
+         </ul>
+      </nav>
+      <div class="page">
+         <div id="pdf-container" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+      </div>
+      <script src="scripts/script.js"></script>
+   </body>
 </html>

@@ -10,6 +10,14 @@
     justify-content: center;
 }
 
+#image-container img {
+    width: 100%; /* Stellen Sie sicher, dass das Bild auf mobilen Geräten gut aussieht */
+    max-width: 600px; /* Begrenzt die Bildbreite auf dem Desktop */
+    height: auto;
+    display: block; /* Entfernt zusätzlichen Platz unter dem Bild */
+    margin: 0 auto; /* Zentriert das Bild */
+}
+
 .nav {
     display: flex;
     justify-content: space-between;

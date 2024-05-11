@@ -17,7 +17,7 @@ const container = document.getElementById('pdf-container');
 const isMobile = window.innerWidth < window.innerHeight;
 
 pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
-    loader.style.display = 'none';  // Ladebildschirm ausblenden
+    //loader.style.display = 'none';  // Ladebildschirm ausblenden
 
     for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         let canvas = document.createElement('canvas');

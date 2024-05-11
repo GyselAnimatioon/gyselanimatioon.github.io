@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const loader = document.getElementById('loader');
+    const nextpageloader = document.getElementById('nextpageloader');
     const container = document.getElementById('pdf-container');
     const isMobile = window.innerWidth < window.innerHeight;
 
@@ -13,19 +14,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearTimeout(timeoutId); // Timeout zurücksetzen, da eine neue Seite geladen wird
 
             if (pageNum > pdf.numPages) {
+				nextpageloader.style.display = 'none';  // Ladebildschirm ausblenden
                 return; // Alle Seiten sind gerendert
             }
-
-			// Mehrere Zeilenumbrüche einfügen
-            let breaks = document.createElement('div');
-            breaks.innerHTML = '<br><br><br><br>';
-            container.appendChild(breaks);
-
-            let loadingMessage = document.createElement('div');
-            loadingMessage.innerText = 'Nächste Seite wird geladen... V7';
-            loadingMessage.style.padding = '20px';
-            loadingMessage.style.textAlign = 'center';
-            container.appendChild(loadingMessage);
 
             pdf.getPage(pageNum).then(page => {
                 var viewport = page.getViewport({scale: 1});

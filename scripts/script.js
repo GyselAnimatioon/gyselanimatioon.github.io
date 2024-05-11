@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const loader = document.getElementById('loader');
+    const nextpageloader = document.getElementById('nextpageloader');
     const container = document.getElementById('pdf-container');
     const isMobile = window.innerWidth < window.innerHeight;
 
     pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
         loader.style.display = 'none';  // Ladebildschirm ausblenden
+        nextpageloader.style.display = 'flex';
 
         let timeoutId; // Timeout-Identifikator für das Laden der nächsten Seite
         let lastPageLoaded = 0; // Zuletzt geladene Seite verfolgen
@@ -13,11 +15,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearTimeout(timeoutId); // Timeout zurücksetzen, da eine neue Seite geladen wird
 
             if (pageNum > pdf.numPages) {
+				nextpageloader.style.display = 'none';
                 return; // Alle Seiten sind gerendert
             }
 
             let loadingMessage = document.createElement('div');
-            loadingMessage.innerText = 'Nächste Seite wird geladen...';
+            loadingMessage.innerText = '';
             loadingMessage.style.padding = '20px';
             loadingMessage.style.textAlign = 'center';
             container.appendChild(loadingMessage);

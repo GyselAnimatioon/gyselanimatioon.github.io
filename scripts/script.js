@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
         loader.style.display = 'none';  // Ladebildschirm ausblenden
+		nextpageloader.style.display = 'flex';
 
         let timeoutId; // Timeout-Identifikator für das Laden der nächsten Seite
         let lastPageLoaded = 0; // Zuletzt geladene Seite verfolgen

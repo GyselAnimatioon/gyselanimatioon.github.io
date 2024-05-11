@@ -1,10 +1,15 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+// Warten auf das vollständige Laden des DOM
+document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const container = document.getElementById('pdf-container');
     const isMobile = window.innerWidth < window.innerHeight;
 
+    // Anzeigen des Ladebildschirms beim Start des Ladevorgangs
+    loader.style.display = 'flex';
+
     pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
-        loader.style.display = 'none';  // Ladebildschirm ausblenden
+        // Verstecken des Ladebildschirms, sobald das PDF geladen ist
+        //loader.style.display = 'none';  
 
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
             let canvas = document.createElement('canvas');

@@ -21,46 +21,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 container.appendChild(loadingMessage);
             }
 
-            // Überprüfen, ob die Seite bereits im localStorage gespeichert ist
-            const cachedPage = localStorage.getItem(`pdf-page-${pageNum}`);
-            if (cachedPage) {
-                const img = document.createElement('img');
-                img.src = cachedPage;
-                container.appendChild(img);
-                if (loadingMessage) {
-                    container.removeChild(loadingMessage);
+            pdf.getPage(pageNum).then(page => {
+                var viewport = page.getViewport({scale: 1});
+                let canvas = document.createElement('canvas');
+                canvas.style.display = 'block';
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                if (isMobile) {
+                    canvas.style.width = "100%";
+                } else {
+                    canvas.style.maxWidth = "100%";
                 }
-                renderPage(pageNum + 1); // Nächste Seite laden
-            } else {
-                pdf.getPage(pageNum).then(page => {
-                    var viewport = page.getViewport({scale: 1});
-                    let canvas = document.createElement('canvas');
-                    canvas.style.display = 'block';
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
 
-                    if (isMobile) {
-                        canvas.style.width = "100%";
-                    } else {
-                        canvas.style.maxWidth = "100%";
+                var renderContext = {
+                    canvasContext: canvas.getContext('2d'),
+                    viewport: viewport
+                };
+
+                page.render(renderContext).promise.then(() => {
+                    container.appendChild(canvas);
+                    if (loadingMessage) {
+                        container.removeChild(loadingMessage);
                     }
-
-                    var renderContext = {
-                        canvasContext: canvas.getContext('2d'),
-                        viewport: viewport
-                    };
-
-                    page.render(renderContext).promise.then(() => {
-                        // Die gerenderte Seite im localStorage speichern
-                        localStorage.setItem(`pdf-page-${pageNum}`, canvas.toDataURL('image/png'));
-                        container.appendChild(canvas);
-                        if (loadingMessage) {
-                            container.removeChild(loadingMessage);
-                        }
-                        renderPage(pageNum + 1); // Nächste Seite laden
-                    });
+                    renderPage(pageNum + 1); // Nächste Seite laden
                 });
-            }
+            });
         };
 
         renderPage(1); // Starten Sie mit der ersten Seite

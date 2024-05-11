@@ -16,20 +16,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return; // Alle Seiten sind gerendert
             }
 
-            // Mehrere Zeilenumbrüche einfügen
+			// Mehrere Zeilenumbrüche einfügen
             let breaks = document.createElement('div');
             breaks.innerHTML = '<br><br><br><br>';
             container.appendChild(breaks);
 
             let loadingMessage = document.createElement('div');
-            loadingMessage.innerText = 'Nächste Seite wird geladen...V6';
+            loadingMessage.innerText = 'Nächste Seite wird geladen... V7';
             loadingMessage.style.padding = '20px';
             loadingMessage.style.textAlign = 'center';
             container.appendChild(loadingMessage);
 
             pdf.getPage(pageNum).then(page => {
-                var scale = isMobile ? 0.5 : 1; // Skalierung für mobile Geräte anpassen
-                var viewport = page.getViewport({ scale: scale });
+                var viewport = page.getViewport({scale: 1});
                 let canvas = document.createElement('canvas');
                 canvas.style.display = 'block';
                 canvas.width = viewport.width;
@@ -49,7 +48,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 page.render(renderContext).promise.then(() => {
                     lastPageLoaded = pageNum; // Aktualisierung der zuletzt geladenen Seite
                     container.appendChild(canvas);
-                    container.removeChild(breaks); // Zeilenumbrüche entfernen
                     container.removeChild(loadingMessage);
                     renderPage(pageNum + 1); // Nächste Seite laden
                 });

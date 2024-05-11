@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             let loadingMessage = document.createElement('div');
-            loadingMessage.innerText = 'Nächste Seite wird geladen...';
+            loadingMessage.innerText = 'Nächste Seite wird geladen... V3';
             loadingMessage.style.padding = '20px';
             loadingMessage.style.textAlign = 'center';
             container.appendChild(loadingMessage);

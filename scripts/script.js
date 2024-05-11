@@ -11,15 +11,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Informationen über das Gerät anzeigen
     deviceInfoDiv.innerHTML = `<p>${browserData}</p>`;
 
+    // Ladebildschirm einblenden
+    const loader = document.createElement('div');
+    loader.id = 'pdf-loader';
+    loader.innerHTML = '<p>Laden...</p>';
+    container.appendChild(loader);
+
     // PDF-Anzeige Logik...
 });
 
 // Bestimmen des Render-Modus basierend auf der Bildschirmbreite
 const isMobile = window.innerWidth < window.innerHeight;
 
-
 pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
-    for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    // PDF erfolgreich geladen, Ladebildschirm entfernen
+    const loader = document.getElementById('pdf-loader');
+    if (loader) {
+        loader.remove();
+    }
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         // Erstellen eines neuen Canvas für jede Seite
         let canvas = document.createElement('canvas');
         canvas.id = `pdf-renderer-${pageNum}`;
@@ -47,37 +58,10 @@ pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
             page.render(renderContext);
         });
     }
+}).catch(error => {
+    console.error('Fehler beim Laden des PDFs: ', error);
+    const loader = document.getElementById('pdf-loader');
+    if (loader) {
+        loader.innerHTML = '<p>Fehler beim Laden des PDFs. Bitte versuchen Sie es später erneut.</p>';
+    }
 });
-
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const container = document.getElementById('image-container');
-    const deviceInfoDiv = document.getElementById('device-info');
-    const browserData = `Browser-Name: ${navigator.appName}<br>
-                         Browser-Version: ${navigator.appVersion}<br>
-                         Plattform: ${navigator.platform}<br>
-                         Sprache: ${navigator.language}<br>
-                         Cookies aktiviert: ${navigator.cookieEnabled}`;
-
-    // Informationen über das Gerät anzeigen
-    deviceInfoDiv.innerHTML = `<p>${browserData}</p>`;
-
-    // Bilder-Anzeige Logik...
-    loadImages([
-	'imageMagazine/image1.jpeg',
-	'imageMagazine/image2.jpeg',
-	'imageMagazine/image3.jpeg',
-	'imageMagazine/image4.jpeg',
-	'imageMagazine/image5.jpeg',
-	'imageMagazine/image6.jpeg',
-	'imageMagazine/image7.jpeg']);
-});
-
-function loadImages(imageUrls) {
-    const container = document.getElementById('image-container');
-    imageUrls.forEach(url => {
-        const img = document.createElement('img');
-        img.src = url;
-        container.appendChild(img);
-    });
-}

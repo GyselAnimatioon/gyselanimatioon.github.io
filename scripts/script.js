@@ -16,8 +16,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return; // Alle Seiten sind gerendert
             }
 
+            // Mehrere Zeilenumbrüche einfügen
+            let breaks = document.createElement('div');
+            breaks.innerHTML = '<br><br><br><br>';
+            container.appendChild(breaks);
+
             let loadingMessage = document.createElement('div');
-            loadingMessage.innerText = 'Nächste Seite wird geladen...V5';
+            loadingMessage.innerText = 'Nächste Seite wird geladen...V6';
             loadingMessage.style.padding = '20px';
             loadingMessage.style.textAlign = 'center';
             container.appendChild(loadingMessage);
@@ -44,6 +49,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 page.render(renderContext).promise.then(() => {
                     lastPageLoaded = pageNum; // Aktualisierung der zuletzt geladenen Seite
                     container.appendChild(canvas);
+                    container.removeChild(breaks); // Zeilenumbrüche entfernen
                     container.removeChild(loadingMessage);
                     renderPage(pageNum + 1); // Nächste Seite laden
                 });

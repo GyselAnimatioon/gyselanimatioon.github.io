@@ -6,20 +6,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
         loader.style.display = 'none';  // Ladebildschirm ausblenden
 
+        let timeoutId; // Timeout-Identifikator für das Laden der nächsten Seite
+        let lastPageLoaded = 0; // Zuletzt geladene Seite verfolgen
+
         let renderPage = (pageNum) => {
+            clearTimeout(timeoutId); // Timeout zurücksetzen, da eine neue Seite geladen wird
+
             if (pageNum > pdf.numPages) {
                 return; // Alle Seiten sind gerendert
             }
 
-            // Nachricht unter der letzten Seite anzeigen, wenn noch weitere Seiten geladen werden
-            let loadingMessage;
-            if (pageNum < pdf.numPages) {
-                loadingMessage = document.createElement('div');
-                loadingMessage.innerText = 'Nächste Seite wird geladen...';
-                loadingMessage.style.padding = '20px';
-                loadingMessage.style.textAlign = 'center';
-                container.appendChild(loadingMessage);
-            }
+            let loadingMessage = document.createElement('div');
+            loadingMessage.innerText = 'Nächste Seite wird geladen...';
+            loadingMessage.style.padding = '20px';
+            loadingMessage.style.textAlign = 'center';
+            container.appendChild(loadingMessage);
 
             pdf.getPage(pageNum).then(page => {
                 var viewport = page.getViewport({scale: 1});
@@ -40,13 +41,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 };
 
                 page.render(renderContext).promise.then(() => {
+                    lastPageLoaded = pageNum; // Aktualisierung der zuletzt geladenen Seite
                     container.appendChild(canvas);
-                    if (loadingMessage) {
-                        container.removeChild(loadingMessage);
-                    }
+                    container.removeChild(loadingMessage);
                     renderPage(pageNum + 1); // Nächste Seite laden
                 });
             });
+
+            // Timeout einrichten
+            timeoutId = setTimeout(() => {
+                if (lastPageLoaded < pageNum) { // Prüfen, ob Fortschritt seit dem letzten Timeout erzielt wurde
+                    loader.innerText = 'Fehler beim Laden weiterer Seiten. Bitte laden Sie die Seite neu.';
+                    loader.style.display = 'block';
+                }
+            }, 60000); // 60 Sekunden Timeout
         };
 
         renderPage(1); // Starten Sie mit der ersten Seite

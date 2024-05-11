@@ -17,13 +17,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             let loadingMessage = document.createElement('div');
-            loadingMessage.innerText = '<br><br><br><br><br><br><br><br>Nächste Seite wird geladen... V4';
+            loadingMessage.innerText = 'Nächste Seite wird geladen...V5';
             loadingMessage.style.padding = '20px';
             loadingMessage.style.textAlign = 'center';
             container.appendChild(loadingMessage);
 
             pdf.getPage(pageNum).then(page => {
-                var viewport = page.getViewport({scale: 1});
+                var scale = isMobile ? 0.5 : 1; // Skalierung für mobile Geräte anpassen
+                var viewport = page.getViewport({ scale: scale });
                 let canvas = document.createElement('canvas');
                 canvas.style.display = 'block';
                 canvas.width = viewport.width;

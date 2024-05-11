@@ -11,12 +11,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return; // Alle Seiten sind gerendert
             }
 
+            // Nachricht unter der letzten Seite anzeigen, wenn noch weitere Seiten geladen werden
+            let loadingMessage;
+            if (pageNum < pdf.numPages) {
+                loadingMessage = document.createElement('div');
+                loadingMessage.innerText = 'Nächste Seite wird geladen...';
+                loadingMessage.style.padding = '20px';
+                loadingMessage.style.textAlign = 'center';
+                container.appendChild(loadingMessage);
+            }
+
             // Überprüfen, ob die Seite bereits im localStorage gespeichert ist
             const cachedPage = localStorage.getItem(`pdf-page-${pageNum}`);
             if (cachedPage) {
                 const img = document.createElement('img');
                 img.src = cachedPage;
                 container.appendChild(img);
+                if (loadingMessage) {
+                    container.removeChild(loadingMessage);
+                }
                 renderPage(pageNum + 1); // Nächste Seite laden
             } else {
                 pdf.getPage(pageNum).then(page => {
@@ -41,6 +54,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         // Die gerenderte Seite im localStorage speichern
                         localStorage.setItem(`pdf-page-${pageNum}`, canvas.toDataURL('image/png'));
                         container.appendChild(canvas);
+                        if (loadingMessage) {
+                            container.removeChild(loadingMessage);
+                        }
                         renderPage(pageNum + 1); // Nächste Seite laden
                     });
                 });

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             let loadingMessage = document.createElement('div');
             loadingMessage.innerText = '';
-            loadingMessage.style.padding = '20px';
+            loadingMessage.style.padding = '0px';
             loadingMessage.style.textAlign = 'center';
             container.appendChild(loadingMessage);
 
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // Timeout einrichten
             timeoutId = setTimeout(() => {
                 if (lastPageLoaded < pageNum) { // Prüfen, ob Fortschritt seit dem letzten Timeout erzielt wurde
-                    loader.innerText = 'Fehler beim Laden weiterer Seiten. Bitte laden Sie die Seite neu.';
+                    loader.innerText = 'Error loading additional pages. Please reload the page.';
                     loader.style.display = 'block';
                 }
             }, 60000); // 60 Sekunden Timeout
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         renderPage(1); // Starten Sie mit der ersten Seite
     }).catch(error => {
-        console.error('Fehler beim Laden des PDFs: ', error);
-        loader.innerHTML = '<p>Fehler beim Laden des PDFs. Bitte versuchen Sie es später erneut.</p>';
+        console.error('Error loading the PDF: ', error);
+        loader.innerHTML = '<p>Error loading the PDF. Please try again later.</p>';
     });
 });

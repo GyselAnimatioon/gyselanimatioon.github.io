@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const isMobile = window.innerWidth < window.innerHeight;
 
     pdfjsLib.getDocument('magazine.pdf').promise.then(pdf => {
-        loader.style.display = 'none';  // Ladebildschirm ausblenden
-		nextpageloader.style.display = 'flex';
+        loader.style.display = 'none';  // Ladebildschirm für das Gesamtdokument ausblenden
+        nextpageloader.style.display = 'flex'; // Ladebildschirm für die nächste Seite anzeigen
 
         let timeoutId; // Timeout-Identifikator für das Laden der nächsten Seite
         let lastPageLoaded = 0; // Zuletzt geladene Seite verfolgen
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             clearTimeout(timeoutId); // Timeout zurücksetzen, da eine neue Seite geladen wird
 
             if (pageNum > pdf.numPages) {
-				nextpageloader.style.display = 'none';  // Ladebildschirm ausblenden
+                nextpageloader.style.display = 'none';  // Keine weiteren Seiten zu laden
                 return; // Alle Seiten sind gerendert
             }
 
@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 page.render(renderContext).promise.then(() => {
                     lastPageLoaded = pageNum; // Aktualisierung der zuletzt geladenen Seite
                     container.appendChild(canvas);
-                    container.removeChild(loadingMessage);
+                    nextpageloader.style.display = 'none'; // Ladebildschirm für die nächste Seite ausblenden
                     renderPage(pageNum + 1); // Nächste Seite laden
+                    nextpageloader.style.display = 'flex'; // Ladebildschirm für die nächste Seite erneut anzeigen
                 });
             });
 
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if (lastPageLoaded < pageNum) { // Prüfen, ob Fortschritt seit dem letzten Timeout erzielt wurde
                     loader.innerText = 'Fehler beim Laden weiterer Seiten. Bitte laden Sie die Seite neu.';
                     loader.style.display = 'block';
+                    nextpageloader.style.display = 'none'; // Ladebildschirm ausblenden
                 }
             }, 60000); // 60 Sekunden Timeout
         };
@@ -58,5 +60,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }).catch(error => {
         console.error('Fehler beim Laden des PDFs: ', error);
         loader.innerHTML = '<p>Fehler beim Laden des PDFs. Bitte versuchen Sie es später erneut.</p>';
+        nextpageloader.style.display = 'none'; // Bei einem Fehler den Ladebildschirm ausblenden
     });
 });

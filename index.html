@@ -20,12 +20,14 @@
          </ul>
       </nav>
 		<div class="page">
-			<div id="loader" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+			<div id="loader" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
 				<p>The Magazine is loading...</p>
+				<div class="spinner"></div>
 			</div>
 			<div id="pdf-container" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
-			<div id="nextpageloader" style="display: none; justify-content: center; align-items: center; height: 100vh;">
-				<p>The next Page is loading...</p>
+			<div id="nextpageloader" style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+				<p>The next page is loading...</p>
+				<div class="spinner"></div>
 			</div>
 		</div>
       <script src="scripts/script.js"></script>

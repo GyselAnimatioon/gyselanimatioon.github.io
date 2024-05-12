@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         // Nach dem Rendern der 5. Seite, fügen Sie den HTML-Teil ein, bevor die 6. Seite geladen wird
                         if (pageNum === 5) {
                             let htmlContent = document.createElement('div');
-                            htmlContent.innerHTML = '<div class="audio-container"> <audio controls> <source src="audio1.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio2.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio3.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> </div>';
+                            htmlContent.innerHTML = '<h2>Related Audios</h2> <div class="audio-container"> <audio controls> <source src="audio1.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio2.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio3.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> </div> <br>';
                             container.appendChild(htmlContent);
                         }
 

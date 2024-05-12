@@ -24,12 +24,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     canvas.style.display = 'block';
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
-                    canvas.style.marginBottom = "10px"; // 10px Abstand unter jeder Seite
 
                     if (isMobile) {
                         canvas.style.width = "100%";
-                        coverContainer.style.marginTop = "20px"; // Zusätzlicher oberer Rand für das Cover auf Mobilgeräten
-                        magazineContainer.style.marginTop = "20px"; // Zusätzlicher oberer Rand für das Magazin auf Mobilgeräten
                     } else {
                         canvas.style.maxWidth = "100%";
                     }
@@ -50,7 +47,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }).catch(error => {
             console.error('Error loading the PDF: ', error);
             loader.innerHTML = '<p>Error loading the PDF. Please try again later.</p>';
-            loader.style.display = 'block';
         });
     };
 

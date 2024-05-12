@@ -90,14 +90,3 @@ nav {
 }
 
 
-/* Abstand zwischen den Seiten */
-canvas {
-    margin-bottom: 10px; /* 10px Abstand unter jeder Seite */
-}
-
-/* Abstand am oberen Rand für Mobilgeräte */
-@media (max-width: 767px) { /* Annahme: Mobile Ansicht unter 768px Breite */
-    #pdf-cover, #pdf-magazine {
-        margin-top: 20px; /* 20px Abstand oben, um Überdeckung durch die Navigation zu verhindern */
-    }
-}

@@ -4,17 +4,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const phonemesAllophonesContainer = document.getElementById('pdf-phonemesallophones');
     const isMobile = window.innerWidth < window.innerHeight;
 
-    // Funktion zum Laden und Anzeigen eines PDF-Dokuments
     const loadPdfDocument = (url, container, onComplete) => {
         pdfjsLib.getDocument(url).promise.then(pdf => {
-            loader.style.display = 'none'; // Ladebildschirm ausblenden
+            loader.style.display = 'none';
             nextpageloader.style.display = 'flex';
 
             let renderPage = (pageNum) => {
                 if (pageNum > pdf.numPages) {
                     nextpageloader.style.display = 'none';
                     if (onComplete) {
-                        onComplete(); // Aufruf des Callbacks, wenn alle Seiten gerendert wurden
+                        onComplete();
                     }
                     return;
                 }
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     canvas.style.display = 'block';
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
-                    canvas.style.marginBottom = "10px"; // Abstand zwischen den Seiten
+                    canvas.style.marginBottom = "10px";
 
                     if (isMobile) {
                         canvas.style.width = "100%";
@@ -40,12 +39,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                     page.render(renderContext).promise.then(() => {
                         container.appendChild(canvas);
+
+                        // Nach dem Rendern der 5. Seite, fügen Sie den HTML-Teil ein, bevor die 6. Seite geladen wird
+                        if (pageNum === 5) {
+                            let htmlContent = document.createElement('div');
+                            htmlContent.innerHTML = '<div class="audio-container"> <audio controls> <source src="audio1.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio2.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio3.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> </div>';
+                            container.appendChild(htmlContent);
+                        }
+
                         renderPage(pageNum + 1); // Nächste Seite laden
                     });
                 });
             };
 
-            renderPage(1); // Starten mit der ersten Seite
+            renderPage(1);
         }).catch(error => {
             console.error('Error loading the PDF: ', error);
             loader.innerHTML = '<p>Error loading the PDF. Please try again later.</p>';
@@ -53,7 +60,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     };
 
-    // Nur das spezifische PDF 'phonemesallophones.pdf' laden
     loadPdfDocument('phonemesallophones.pdf', phonemesAllophonesContainer, () => {
         console.log('PDF phonemesallophones.pdf has been loaded.');
     });

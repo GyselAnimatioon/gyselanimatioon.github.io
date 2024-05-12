@@ -46,8 +46,20 @@
                 Ihr Browser unterstützt das Audio-Element nicht.
             </audio>
         </div>
+		<div id="loader" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+				<p>The Document is loading...</p>
+				<br>
+				<div class="spinner"></div>
+			</div>
+			<br><br>
+			<div id="pdf-answers" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+			<div id="nextpageloader" style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+				<p>The next page is loading...</p>
+				<br>
+				<div class="spinner"></div>
+			</div>
     </div>
 
-   <script src="../../scripts/script.js"></script>
+   <script src="answers.js"></script>
    </body>
 </html>

@@ -46,6 +46,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             htmlContent.innerHTML = '<br><h2>Related Audios</h2> <div class="audio-container"> <audio controls> <source src="audio1.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio2.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="audio3.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> </div> <br><br>';
                             container.appendChild(htmlContent);
                         }
+						
+						// Nach dem Rendern der 7. Seite, fügen Sie den HTML-Teil ein, bevor die 8. Seite geladen wird
+                        if (pageNum === 7) {
+                            let htmlContent = document.createElement('div');
+                            htmlContent.innerHTML = '<br><h2>Related Audios</h2> <div class="audio-container"> <audio controls> <source src="light.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> <audio controls> <source src="dark.mp3" type="audio/mpeg"> Ihr Browser unterstützt das Audio-Element nicht. </audio> </div> <br><br>';
+                            container.appendChild(htmlContent);
+                        }
 
                         renderPage(pageNum + 1); // Nächste Seite laden
                     });
